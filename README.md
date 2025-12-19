@@ -9,12 +9,14 @@ A full-stack booking platform for a sports facility featuring multi-resource boo
 *   **Waitlist System**: Users can join a waitlist for busy slots and are notified upon cancellation.
 *   **Admin Dashboard**: Manage Courts, Coaches, Equipment, and Pricing Rules.
 *   **Concurrency Handling**: Database-level constraints prevent double bookings.
+*   **Serverless Architecture**: Fully integrated within Next.js App Router (API Routes).
 
 ## 🛠️ Tech Stack
 
-*   **Frontend**: Next.js 16 (App Router), TailwindCSS, Framer Motion
-*   **Backend**: Node.js, Express.js
-*   **Database**: PostgreSQL (with exclusion constraints for availability)
+*   **Framework**: Next.js 16 (App Router)
+*   **Language**: TypeScript
+*   **Database**: PostgreSQL
+*   **Styling**: TailwindCSS, Framer Motion
 
 ## 📦 Setup Instructions
 
@@ -31,30 +33,21 @@ Create a PostgreSQL database and configure the connection.
 CREATE DATABASE badminton_db;
 ```
 
-Update the `.env` file in the root directory:
+Update the `web-app/.env` file:
 ```env
 DATABASE_URL=postgres://user:password@localhost:5432/badminton_db
-PORT=5000
 ```
-*(Check `DB_DESIGN.md` for detailed schema explanations)*
 
-### 2. Install & Run Backend
-The backend handles API requests and database transactions.
+### 2. Initialize Data
+Run the seeder to set up the schema and initial data (Courts, Coaches, Equipment).
 
 ```bash
-# Install dependencies
-npm install
-
-# Initialize Database Schema & Seed Data
+# From the root directory
 node run_seed.js
-
-# Start Server
-npm start
 ```
-*Server runs on http://localhost:5000*
 
-### 3. Install & Run Frontend
-The frontend provides the user and admin interfaces.
+### 3. Run Application
+The application (Frontend + API) runs as a single Next.js app.
 
 ```bash
 cd web-app
@@ -65,12 +58,12 @@ npm install
 # Run Development Server
 npm run dev
 ```
-*Frontend runs on http://localhost:3000*
+*App runs on http://localhost:3000*
 
 ## 📚 Deliverables Checklist
 
 - [x] **Git Repo**: Initialized with source code.
-- [x] **Seed Data**: Included in `seed_v2.sql` (loaded via `run_seed.js`).
+- [x] **Seed Data**: Included in `seed_v2.sql`.
 - [x] **Write-up**: See [DB_DESIGN.md](./DB_DESIGN.md) for Database Design & Pricing Engine approach.
 
 ## 🧪 Admin Credentials

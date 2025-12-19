@@ -16,7 +16,7 @@ export async function GET(req: Request) {
 
         if (bookings.length === 0) return NextResponse.json([]);
 
-        const bookingIds = bookings.map(b => b.id);
+        const bookingIds = bookings.map((b: any) => b.id);
         const itemsRes = await pool.query(`
             SELECT bi.*, 
                 COALESCE(c.name, ch.name, e.name) as resource_name
@@ -27,7 +27,7 @@ export async function GET(req: Request) {
             WHERE bi.booking_id = ANY($1::int[])
         `, [bookingIds]);
 
-        const result = bookings.map(booking => {
+        const result = bookings.map((booking: any) => {
             return {
                 ...booking,
                 items: itemsRes.rows.filter((item: any) => item.booking_id === booking.id)
